@@ -35,7 +35,7 @@
     </Window.Resources>
     <Grid Name="mainGrid">
         <Border BorderBrush="{DynamicResource GridLineBrush}" Background="{DynamicResource GridLineBrush}" Margin="10,103,10.2,9.8">
-            <Grid Margin="2" Name="grid" MouseMove="grid_MouseMove">
+            <Grid Margin="2" Name="grid">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition/>

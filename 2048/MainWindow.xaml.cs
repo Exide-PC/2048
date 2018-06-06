@@ -298,10 +298,6 @@ namespace _2048
                     // Получим все элементы грида нужного типа               
                     IEnumerable<NumericRect> visibleRects = this.grid.Children.OfType<NumericRect>();
 
-                    //// Узнаем высоту и ширину одной ячейки сетки ячейки
-                    //double cellHeight = this.grid.ActualHeight / this.grid.RowDefinitions.Count;
-                    //double cellWidth = this.grid.ActualWidth / this.grid.ColumnDefinitions.Count;
-
                     foreach (NumericRect visibleRect in visibleRects)
                     {
                         // Определим для текущего квадрата его строку и колонку в таблице
@@ -543,64 +539,6 @@ namespace _2048
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.game.Restart();
-        }
-
-        private void grid_MouseMove(object sender, MouseEventArgs e)
-        {
-            // TODO: Сделать обработку движения мышью
-            return; // А пока ничего не делаем
-
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                if (startPoint == DefaultPoint)
-                {
-                    startPoint = e.GetPosition(grid);
-                    return;
-                }
-                
-                double deltaX = e.GetPosition(grid).X - startPoint.X;
-                double deltaY = e.GetPosition(grid).Y - startPoint.Y;
-
-                double hyp = deltaX * deltaX + deltaY * deltaY;
-
-                if (hyp <= 5)
-                {
-                    return;
-                }
-
-                int xDirection, yDirection;
-
-                if (deltaX > 0) xDirection = 1;
-                else if (deltaX < 0) xDirection = -1;
-                else xDirection = 0;
-
-                if (deltaY > 0) yDirection = 1;
-                else if (deltaY < 0) yDirection = -1;
-                else yDirection = 0;
-
-                // если по модулю сумма направлений равна 1, то движение было в одном направлении
-                // если 0 - мышка не двигалась, если 2 - движение было в нескольких направлениях
-                if (Math.Abs(yDirection) + Math.Abs(xDirection) == 1)
-                {
-                    if (xDirection == 1) // вправо
-                        Move_s(Game.SlideDirection.Right);
-                    else if (xDirection == -1)
-                        Move_s(Game.SlideDirection.Left);
-                    else if (yDirection == 1)
-                        Move_s(Game.SlideDirection.Down);
-                    else if (yDirection == -1)
-                        Move_s(Game.SlideDirection.Up);
-                    else
-                        throw new InvalidDataException(
-                            $"Невозможно определить направление x:{xDirection}, y:{yDirection}");
-                }
-            }
-            else
-            {
-                startPoint = DefaultPoint;
-            }
-
-            //currentPoint = e.GetPosition(grid);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

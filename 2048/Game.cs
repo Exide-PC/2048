@@ -433,19 +433,5 @@ namespace _2048
         {
             return new Point(width - 1 - point.X, point.Y);
         }
-
-        #region DEBUG
-        void PrintMatrix()
-        {
-            for (int i = 0; i < this.Height; i++)
-            {
-                for (int j = 0; j < this.Width; j++)
-                {
-                    Debug.Write(matrix[i, j] + " ");
-                }
-                Debug.WriteLine("");
-            }
-        }
-        #endregion
     }
 }
